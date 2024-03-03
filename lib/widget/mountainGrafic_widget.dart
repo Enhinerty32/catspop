@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 //40 maximo
 class MountainGraficWidget extends StatelessWidget {
   
-    MountainGraficWidget({required this.isShowingMainData,required, this.margenAltura, required this.perfil1, required this.perfil2, this.lineWidth, this.ticketPercentage,   
+    MountainGraficWidget({required this.isShowingMainData,required, this.margenAltura, required this.perfil1, required this.perfil2, this.lineWidth, this.ticketPercentage, this.dotbool,   
    });
  int MaxValueList(List<int> lista1, List<int> lista2) {
   int sumaLista1 = lista1.fold(0, (a, b) => a + b);
@@ -16,6 +16,7 @@ class MountainGraficWidget extends StatelessWidget {
 }
   final bool isShowingMainData;
   //Estas son las listas que quieros que sean reflejados en los graficos 
+  final bool? dotbool ;
   final List<int> perfil1 ;
   final List<int> perfil2 ;
  final double?lineWidth;
@@ -160,7 +161,7 @@ List<FlSpot> createLineList(List<int> list) {
         color: Colors. blue,
         barWidth: lineWidth??2,
         isStrokeCapRound: true,
-        dotData: const FlDotData(show: true),
+        dotData:   FlDotData(show:  dotbool??true),
         belowBarData: BarAreaData(show: true,color: Colors.blue.withOpacity(0.3)),
         spots: createLineList(perfil1),
       );
@@ -173,7 +174,7 @@ List<FlSpot> createLineList(List<int> list) {
         color: Colors.red,
         barWidth: lineWidth??2,
         isStrokeCapRound: true,
-        dotData: const FlDotData(show: true),
+        dotData:   FlDotData(show: dotbool??true),
         belowBarData: BarAreaData(
           show: true,
           color: Colors.pink.withOpacity(0.3),

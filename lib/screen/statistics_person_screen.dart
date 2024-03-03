@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 
 class StatisticsPersonScreen extends StatelessWidget {
      StatisticsPersonScreen({super.key});
-     final List<int> perfil1=[3,53,3,0,5,5,5,0,0,12,-12,100, ];
-  final List<int> perfil2 =[3,5,10,3,0,3,-3,-3,3,20,100  ];
+     final List<int> perfil1=[0, 0, 0, 5, 1, 3, 1, 5, 0, 3, 3, 3, 0, 0, 0, 1, 3, 3, 5, 1, 3, 3, 3, 0, 0, 0, 0, 3, 1, 5, 0, 3, 3, 3, 0, 0, 5, 1, 3, 1, 5, 0, 3, 3, 3]
+;
+  final List<int> perfil2 =  [5, 5, 5, 0, 1, 3, 1, 0, 5, 3, 3, 3, 5, 5, 5, 1, 3, 3, 0, 1, 3, 3, 3, 5, 5, 5, 5, 3, 1, 0, 5, 0, 3, 3, 5, 5, 1, 5, 3, 5, 1, 5, 3, 3, 3]
+;
    @override
    Widget build(BuildContext context) {
      return Scaffold(body: Column(
@@ -33,7 +35,10 @@ class StatisticsPersonScreen extends StatelessWidget {
     child: Container(
      padding: EdgeInsets.only(top: 20,bottom: 10,right: 20),
     height: 200,width:perfil1.length *23, 
-        child: MountainGraficWidget(ticketPercentage: 0.5,margenAltura: 2,isShowingMainData: true,perfil1: perfil1,perfil2: perfil2)) ,
+        child: MountainGraficWidget(ticketPercentage: 0.5,
+        margenAltura: 2,
+        isShowingMainData: true,
+        perfil1: perfil1,perfil2: perfil2)) ,
      
     );
   }
