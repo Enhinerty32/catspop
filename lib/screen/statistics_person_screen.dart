@@ -91,6 +91,7 @@ class StatisticsPersonScreen extends StatelessWidget {
 
 
   Widget ButtonsAR() {
+    //Trabajar en botton
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
