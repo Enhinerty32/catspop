@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp( 
       debugShowCheckedModeBanner: false,
-      initialRoute:  'InfoPerson',
+      initialRoute:  'test',
       theme: ThemeData.light(),
       routes: {
         'Home': (BuildContext context) => const HomeScreen(),

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class StatisticsPersonScreen extends StatelessWidget {
      StatisticsPersonScreen({super.key});
-     final List<int> perfil1=[0, 0, 0, 5, 1, 3, 1, 5, 0, 3, 3, 3, 0, 0, 0, 1, 3, 3, 5, 1, 3, 3, 3, 0, 0, 0, 0, 3, 1, 5, 0, 3, 3, 3, 0, 0, 5, 1, 3, 1, 5, 0, 3, 3, 3]
+  final List<int> perfil1=[0, 0, 0, 5, 1, 3, 1, 5, 0, 3, 3, 3, 0, 0, 0, 1, 3, 3, 5, 1, 3, 3, 3, 0, 0, 0, 0, 3, 1, 5, 0, 3, 3, 3, 0, 0, 5, 1, 3, 1, 5, 0, 3, 3, 3]
 ;
   final List<int> perfil2 =  [5, 5, 5, 0, 1, 3, 1, 0, 5, 3, 3, 3, 5, 5, 5, 1, 3, 3, 0, 1, 3, 3, 3, 5, 5, 5, 5, 3, 1, 0, 5, 0, 3, 3, 5, 5, 1, 5, 3, 5, 1, 5, 3, 3, 3]
 ;
@@ -91,7 +91,7 @@ class StatisticsPersonScreen extends StatelessWidget {
 
 
   Widget ButtonsAR() {
-    //Trabajar en botton
+    //Trabajar en bottong
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
