@@ -1,7 +1,11 @@
 import 'dart:math';
 
 import 'package:catspop/widget/analytic_widget.dart';
+import 'package:catspop/widget/widgets.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 
 class InfoPersonScreen extends StatefulWidget {
   const InfoPersonScreen({Key? key}) : super(key: key);
@@ -11,7 +15,43 @@ class InfoPersonScreen extends StatefulWidget {
 }
 
 class _InfoPersonScreenState extends State<InfoPersonScreen> {
-  @override
+
+  final List<List<String>> myItemList = [
+    [
+                'Deporte',
+                'Chistes',
+                'Anime',
+                'kpop',
+                'Parangaricuirimicfsdfasdasdfasdfasdfasd asdfasdfa asdfasdfas asdfasdfa asdf sa dafsdafuaro',
+                'Chistes',
+                'Anime',
+                'kpop',
+                'Deporte',
+                'Comer tofu',
+                'kpop',
+                'Parangaricuirimicfsdfasdfuaro',
+                'Chistes',
+                'Anime',
+                'Deporte',
+              ],
+    ['Comida', 'sexo',"religion","amigos"],
+    ['Perros', 'tarantulas', 'peliculas de terrro',"el vecino","crisis econonima"],
+  ]; 
+
+  
+
+  final List<String> myTitles = ['Deseos', 'Necesidades', 'Miedos'];
+
+
+
+  final List<bool> _isOpen = [false,false,false]; // Initial expanded state
+
+//SetState of ExpasionList
+  void _toggleExpansion(int index) {
+    setState(() {
+      _isOpen[index] = !_isOpen[index];
+    });
+  }
   Widget build(BuildContext context) {
     MediaQueryData mediaquery = MediaQuery.of(context);
 
@@ -24,72 +64,81 @@ class _InfoPersonScreenState extends State<InfoPersonScreen> {
         body: CustomScrollView(
       scrollDirection: Axis.vertical,
       slivers: [
-        SliverAppBar(
+        const SliverAppBar(
           title: Text('asdf'),
         ),
         SliverList(
             delegate: SliverChildBuilderDelegate((context, index) {
           return pricipalsWidget[index];
         }, childCount: pricipalsWidget.length)),
-        fourthOne(),
+          // Wishes,Troubles,Needs
+          SliverToBoxAdapter(child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ExpasionPanelListCategory(itemTittles: myTitles ,itemsLists: myItemList),
+          )),
         // widget Analisis de Interacion
-         AnalyticWidget().analyticResult(context)
+         AnalyticWidget().analyticResult(context),
+       
+
+        // SliverToBoxAdapter(
+        //   child: ThoughtsCategoryWidget(specials: [
+        //         'Deporte',
+        //         'Chistes',
+        //         'Anime',
+        //         'kpop',
+        //         'Parangaricuirimicfsdfasdasdfasdfasdfasd asdfasdfa asdfasdfas asdfasdfa asdf sa dafsdafuaro',
+        //         'Chistes',
+        //         'Anime',
+        //         'kpop',
+        //         'Deporte',
+        //         'Comer tofu',
+        //         'kpop',
+        //         'Parangaricuirimicfsdfasdfuaro',
+        //         'Chistes',
+        //         'Anime',
+        //         'Deporte',
+        //       ],),
+        // ),
+   
+        // SliverToBoxAdapter(child: ThoughtsCategoryWidget(specials: ['gatos'],)),
       ],
     ));
   }
 
-    Widget fourthOne() {
-    final List<String> specials = [
-      'Deporte',
-      'Chistes',
-      'Anime',
-      'kpop',
-      'Parangaricuirimicfsdfasdasdfasdfasdfasd asdfasdfa asdfasdfas asdfasdfa asdf sa dafsdafuaro',
-      'Chistes',
-      'Anime',
-      'kpop',
-      'Deporte',
-      'Comer tofu',
-      'kpop',
-      'Parangaricuirimicfsdfasdfuaro',
-      'Chistes',
-      'Anime',
-      'Deporte',
-    ];
-    return SliverToBoxAdapter(
-      child: SizedBox(
-        height: 180,
-        child: GridView.builder( 
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-          ),
-          scrollDirection: Axis.horizontal,
-          itemCount: specials.length,
-          itemBuilder: (context, index) {
-            return Tooltip(
-              showDuration: Duration(minutes: 1),
-              message: '${specials[index]}',
-              child: Container(
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.all(5),
-                  color: Colors.amberAccent,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(20)),
-                    padding: EdgeInsets.all(7),
-                    child: Text(
-                      '${specials[index]}',
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  )),
-            );
-          },
-        ),
-      ),
-    );
+
+ 
+
+  Widget ExpasionPanelListCategory({required List<List<String>> itemsLists,required List<String> itemTittles}) {
+     
+    
+    return ExpansionPanelList(expandedHeaderPadding:EdgeInsets.all(5) ,
+      expansionCallback: (i, isopen) {
+    _toggleExpansion(i);} ,children: [
+
+
+
+    ExpansionPanel(backgroundColor: Colors.yellow,headerBuilder: (context, isopen) {return
+         Center(child: Text('${itemTittles[0]}'));
+      
+    }, body:ThoughtsCategoryWidget(specials:itemsLists[0],),isExpanded: _isOpen[0])
+    ,
+  
+    ExpansionPanel(backgroundColor: Colors.blueGrey.shade200,headerBuilder: (context, isopen) {return
+         Center(child: Text('${itemTittles[1]}'));
+      
+    }, body:ThoughtsCategoryWidget(specials:itemsLists[1],),isExpanded: _isOpen[1])
+    ,  ExpansionPanel(backgroundColor: Colors.redAccent,headerBuilder: (context, isopen) {return
+         Center(child: Text('${itemTittles[2]}'));
+      
+    }, body:ThoughtsCategoryWidget(specials:itemsLists[2],),isExpanded: _isOpen[2])
+    ,
+    
+    
+    
+    ],);
   }
+
+   
 
   Widget thirdOne() {
     return Container(
@@ -174,6 +223,8 @@ class _InfoPersonScreenState extends State<InfoPersonScreen> {
       child: Text('Image'),
     );
   }
+
+  
 }
 
 

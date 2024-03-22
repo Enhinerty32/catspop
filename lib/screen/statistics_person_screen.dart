@@ -10,17 +10,9 @@ class StatisticsPersonScreen extends StatelessWidget {
 ;
    @override
    Widget build(BuildContext context) {
-     return Scaffold(body: Column(
+     return Scaffold(appBar: AppBar(),body: Column(
       children: [
        
-         Align(
-              alignment: Alignment.centerRight,
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(Icons.clear)),
-            ),
         SingleChildScrollView(scrollDirection: Axis.horizontal,
           child: 
               GraficMountain() , 
