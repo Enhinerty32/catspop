@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:catspop/widget/analytic_widget.dart';
+import 'package:catspop/widget/view_cycle_widget.dart';
 import 'package:catspop/widget/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,36 +16,37 @@ class InfoPersonScreen extends StatefulWidget {
 }
 
 class _InfoPersonScreenState extends State<InfoPersonScreen> {
-
   final List<List<String>> myItemList = [
     [
-                'Deporte',
-                'Chistes',
-                'Anime',
-                'kpop',
-                'Parangaricuirimicfsdfasdasdfasdfasdfasd asdfasdfa asdfasdfas asdfasdfa asdf sa dafsdafuaro',
-                'Chistes',
-                'Anime',
-                'kpop',
-                'Deporte',
-                'Comer tofu',
-                'kpop',
-                'Parangaricuirimicfsdfasdfuaro',
-                'Chistes',
-                'Anime',
-                'Deporte',
-              ],
-    ['Comida', 'sexo',"religion","amigos"],
-    ['Perros', 'tarantulas', 'peliculas de terrro',"el vecino","crisis econonima"],
-  ]; 
-
-  
+      'Deporte',
+      'Chistes',
+      'Anime',
+      'kpop',
+      'Parangaricuirimicfsdfasdasdfasdfasdfasd asdfasdfa asdfasdfas asdfasdfa asdf sa dafsdafuaro',
+      'Chistes',
+      'Anime',
+      'kpop',
+      'Deporte',
+      'Comer tofu',
+      'kpop',
+      'Parangaricuirimicfsdfasdfuaro',
+      'Chistes',
+      'Anime',
+      'Deporte',
+    ],
+    ['Comida', 'sexo', "religion", "amigos"],
+    [
+      'Perros',
+      'tarantulas',
+      'peliculas de terrro',
+      "el vecino",
+      "crisis econonima"
+    ],
+  ];
 
   final List<String> myTitles = ['Deseos', 'Necesidades', 'Miedos'];
 
-
-
-  final List<bool> _isOpen = [false,false,false]; // Initial expanded state
+  final List<bool> _isOpen = [false, false, false]; // Initial expanded state
 
 //SetState of ExpasionList
   void _toggleExpansion(int index) {
@@ -52,11 +54,12 @@ class _InfoPersonScreenState extends State<InfoPersonScreen> {
       _isOpen[index] = !_isOpen[index];
     });
   }
+
   Widget build(BuildContext context) {
     MediaQueryData mediaquery = MediaQuery.of(context);
 
     final List<Widget> pricipalsWidget = [
-     firstOne(),
+      firstOne(),
       secondOne(),
       thirdOne(),
     ];
@@ -71,74 +74,59 @@ class _InfoPersonScreenState extends State<InfoPersonScreen> {
             delegate: SliverChildBuilderDelegate((context, index) {
           return pricipalsWidget[index];
         }, childCount: pricipalsWidget.length)),
-          // Wishes,Troubles,Needs
-          SliverToBoxAdapter(child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ExpasionPanelListCategory(itemTittles: myTitles ,itemsLists: myItemList),
-          )),
+        // Wishes,Troubles,Needs
+        SliverToBoxAdapter(
+            child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ExpasionPanelListCategory(
+              itemTittles: myTitles, itemsLists: myItemList),
+        )),
         // widget Analisis de Interacion
-         AnalyticWidget().analyticResult(context),
-       
+        AnalyticWidget().analyticResult(context),
 
-        // SliverToBoxAdapter(
-        //   child: ThoughtsCategoryWidget(specials: [
-        //         'Deporte',
-        //         'Chistes',
-        //         'Anime',
-        //         'kpop',
-        //         'Parangaricuirimicfsdfasdasdfasdfasdfasd asdfasdfa asdfasdfas asdfasdfa asdf sa dafsdafuaro',
-        //         'Chistes',
-        //         'Anime',
-        //         'kpop',
-        //         'Deporte',
-        //         'Comer tofu',
-        //         'kpop',
-        //         'Parangaricuirimicfsdfasdfuaro',
-        //         'Chistes',
-        //         'Anime',
-        //         'Deporte',
-        //       ],),
-        // ),
-   
-        // SliverToBoxAdapter(child: ThoughtsCategoryWidget(specials: ['gatos'],)),
       ],
     ));
   }
 
-
- 
-
-  Widget ExpasionPanelListCategory({required List<List<String>> itemsLists,required List<String> itemTittles}) {
-     
-    
-    return ExpansionPanelList(expandedHeaderPadding:EdgeInsets.all(5) ,
+  Widget ExpasionPanelListCategory(
+      {required List<List<String>> itemsLists,
+      required List<String> itemTittles}) {
+    return ExpansionPanelList(
+      expandedHeaderPadding: EdgeInsets.all(5),
       expansionCallback: (i, isopen) {
-    _toggleExpansion(i);} ,children: [
-
-
-
-    ExpansionPanel(backgroundColor: Colors.yellow,headerBuilder: (context, isopen) {return
-         Center(child: Text('${itemTittles[0]}'));
-      
-    }, body:ThoughtsCategoryWidget(specials:itemsLists[0],),isExpanded: _isOpen[0])
-    ,
-  
-    ExpansionPanel(backgroundColor: Colors.blueGrey.shade200,headerBuilder: (context, isopen) {return
-         Center(child: Text('${itemTittles[1]}'));
-      
-    }, body:ThoughtsCategoryWidget(specials:itemsLists[1],),isExpanded: _isOpen[1])
-    ,  ExpansionPanel(backgroundColor: Colors.redAccent,headerBuilder: (context, isopen) {return
-         Center(child: Text('${itemTittles[2]}'));
-      
-    }, body:ThoughtsCategoryWidget(specials:itemsLists[2],),isExpanded: _isOpen[2])
-    ,
-    
-    
-    
-    ],);
+        _toggleExpansion(i);
+      },
+      children: [
+        ExpansionPanel(
+            backgroundColor: Colors.yellow,
+            headerBuilder: (context, isopen) {
+              return Center(child: Text('${itemTittles[0]}'));
+            },
+            body: ThoughtsCategoryWidget(
+              specials: itemsLists[0],
+            ),
+            isExpanded: _isOpen[0]),
+        ExpansionPanel(
+            backgroundColor: Colors.blueGrey.shade200,
+            headerBuilder: (context, isopen) {
+              return Center(child: Text('${itemTittles[1]}'));
+            },
+            body: ThoughtsCategoryWidget(
+              specials: itemsLists[1],
+            ),
+            isExpanded: _isOpen[1]),
+        ExpansionPanel(
+            backgroundColor: Colors.redAccent,
+            headerBuilder: (context, isopen) {
+              return Center(child: Text('${itemTittles[2]}'));
+            },
+            body: ThoughtsCategoryWidget(
+              specials: itemsLists[2],
+            ),
+            isExpanded: _isOpen[2]),
+      ],
+    );
   }
-
-   
 
   Widget thirdOne() {
     return Container(
@@ -150,8 +138,10 @@ class _InfoPersonScreenState extends State<InfoPersonScreen> {
           Text('Descripcion'),
           SizedBox(height: 5),
           Text(
-              'Esse voluptate aute elit Lorem sunt et ut mollit officia voluptate. Ad mollit velit amet dolore eiusmod magna. Aliquip labore sunt qui eiusmod sint aliquip amet nisi reprehenderit in in proident nulla sint. Duis sit nostrud sunt dolor dolor ea. Exercitation dolor esse excepteur ullamco aliquip proident excepteur voluptate cillum. Aliqua Lorem reprehenderit velit aliquip pariatur velit qui aliquip.')
-        ],
+              '  \n initDateBlood (2024, 03, 1) \n endDateBlood (2024, 03, 5) \n initFertile(2024, 03, 11) \n endMenstrualCycle (2024, 03, 27) \n \nvoluptate aute elit Lorem sunt et ut mollit officia voluptate. Ad mollit velit amet dolore eiusmod magna. Aliquip labore sunt qui eiusmod sint aliquip amet nisi reprehenderit in in proident nulla sint. Duis sit nostrud sunt dolor dolor ea. Exercitation dolor esse excepteur ullamco aliquip proident excepteur voluptate cillum. Aliqua Lorem reprehenderit velit aliquip pariatur velit qui aliquip.')
+        ],  
+ 
+   
       ),
     );
   }
@@ -159,13 +149,13 @@ class _InfoPersonScreenState extends State<InfoPersonScreen> {
   Widget secondOne() {
     return Container(
       color: Color.fromARGB(255, 255, 166, 196),
-      child: const Padding(
+      child:   Padding(
         padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text('Heat schedule'),
+            ViewCycleWidget(),
             SizedBox(
               height: 6,
             ),
@@ -223,8 +213,4 @@ class _InfoPersonScreenState extends State<InfoPersonScreen> {
       child: Text('Image'),
     );
   }
-
-  
 }
-
-
