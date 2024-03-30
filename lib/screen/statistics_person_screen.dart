@@ -36,7 +36,8 @@ class StatisticsPersonScreen extends StatelessWidget {
   }
   
   Widget CircleGrafics() {
-    return Container( color: Colors.black,
+   Color?  colorText=Colors.black;
+    return Container( 
       padding: EdgeInsets.all(6),
       height: 220,
       child:   Row(
@@ -53,7 +54,7 @@ class StatisticsPersonScreen extends StatelessWidget {
                 centerSpaceRadius: 5,
                 sectionsSpace: 2,
                 sections: [
-                  PieChartSectionData(  showTitle: false,
+                  PieChartSectionData(  showTitle: false, 
                       title: 'Tacto',
                       value: 5,
                       radius: 100,
@@ -82,11 +83,11 @@ class StatisticsPersonScreen extends StatelessWidget {
           ),
         ),SizedBox(width: 10,),
          Column(mainAxisAlignment: MainAxisAlignment.center,crossAxisAlignment: CrossAxisAlignment.start,children: [ 
-                tittlePlusIcon('Tacto', Colors.greenAccent    ),
-                tittlePlusIcon('Servicio', Colors.yellowAccent),
-                tittlePlusIcon('Regalo', Colors.redAccent     ),
-                tittlePlusIcon('Palabra', Colors.purpleAccent ) ,
-                tittlePlusIcon('Tiempo', Colors.blueAccent    )],)
+                tittlePlusIcon(tittle: 'Tacto',color:Colors.greenAccent    ),
+                tittlePlusIcon(tittle: 'Servicio',color: Colors.yellowAccent),
+                tittlePlusIcon(tittle: 'Regalo',  color:Colors.redAccent     ),
+                tittlePlusIcon(tittle: 'Palabra', color: Colors.purpleAccent ) ,
+                tittlePlusIcon(tittle: 'Tiempo',  color:Colors.blueAccent    )],)
       ],
     )
     );
@@ -159,13 +160,18 @@ class StatisticsPersonScreen extends StatelessWidget {
   }
 
   //Adiconales
-    Widget tittlePlusIcon(String tittle, Color color) {
-    return Row(
-      children: [
-        Icon(Icons.circle, color: color,size: 30,),
-        SizedBox(width: 10),
-        Text(tittle,style: TextStyle(color: Colors.white),),
-      ],
+    Widget tittlePlusIcon({required String tittle, required Color color,Color? colorText}) {
+      colorText=Colors.black;
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Row(
+        children: [
+          Icon(Icons.circle, color: color,size: 30,),
+          SizedBox(width: 10),
+          Text(tittle,style: TextStyle(color: colorText),),
+          
+        ],
+      ),
     );
   }
  }
@@ -194,8 +200,8 @@ class StatisticsPersonScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              StatisticsPersonScreen().tittlePlusIcon('yo', Colors.blue),
-              StatisticsPersonScreen().tittlePlusIcon('Ella', Colors.red)
+              StatisticsPersonScreen().tittlePlusIcon(tittle: 'yo',  color: Colors.blue),
+              StatisticsPersonScreen().tittlePlusIcon(tittle: 'Ella',color:  Colors.red)
             ],
           ),
           SizedBox(

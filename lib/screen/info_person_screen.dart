@@ -101,7 +101,9 @@ class _InfoPersonScreenState extends State<InfoPersonScreen> {
         child: ExpasionPanelListCategory(  itemsLists: myItemList),
       ));
   }
-Widget fifthOne(List<bool> checks) {
+
+  Widget fifthOne(List<bool> checks) {
+  double sizeBox =50;
   List<String> itemTexts = [
     'Comunicación de Sentimientos y Emociones:\n\nEste nivel se centra en la apertura emocional y la capacidad de comunicar libremente los sentimientos y emociones. Es fundamental establecer una base sólida de confianza emocional antes de avanzar hacia niveles más íntimos',
     'Compartir Experiencias Personales y Pasatiempos:\n\nAquí, la pareja comienza a construir confianza a través de la participación en actividades juntos y compartiendo experiencias personales. Esto ayuda a fortalecer el vínculo y a crear un sentido de conexión más profundo.',
@@ -121,10 +123,23 @@ Widget fifthOne(List<bool> checks) {
   ];
 
   return Container(
-    height: 100,
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(15),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.2),
+          spreadRadius: 5,
+          blurRadius: 7,
+          offset: Offset(0, 3),
+        ),
+      ],
+    ),
+    margin: EdgeInsets.all(10),
+    padding: EdgeInsets.all(15),
     child: Column(
       children: [
-        Text("Nivel de confianza"),
+        Text("Nivel de confianza", style: TextStyle(fontWeight: FontWeight.bold)),
         Padding(
           padding: EdgeInsets.all(8.0),
           child: Row(
@@ -132,7 +147,7 @@ Widget fifthOne(List<bool> checks) {
             children: List.generate(itemTexts.length, (index) {
               return Stack(
                 alignment: Alignment.center,
-                children: [ 
+                children: [
                   Tooltip(
                     message: itemTexts[index],
                     child: Container(
@@ -141,8 +156,8 @@ Widget fifthOne(List<bool> checks) {
                         border: Border.all(width: 1, color: Colors.black),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      height: 60,
-                      width: 60,
+                      height: sizeBox,
+                      width:  sizeBox,
                     ),
                   ),
                   if (index < checks.length && checks[index])
@@ -157,78 +172,112 @@ Widget fifthOne(List<bool> checks) {
   );
 }
 
-  Widget fourthOne() => StatisticsPersonScreen().CircleGrafics();
 
-  Widget ExpasionPanelListCategory(
-      {required List<List<String>> itemsLists,
-       }) {
-    return ExpansionPanelList(
-      expandedHeaderPadding: EdgeInsets.all(5),
-      expansionCallback: (i, isopen) {
-        _toggleExpansion(i);
-      },
-      children: [
-        ExpansionPanel(
-            backgroundColor: Colors.yellow,
-            headerBuilder: (context, isopen) {
-              return Center(child: Text('${itemsLists[0][0]}'));
-            },
-
-            //Usar customList Para modificar datos de las lista
-            body: ThoughtsCategoryWidget(
-              specials: itemsLists[0],
-            ),
-            isExpanded: _isOpen[0]),
-        ExpansionPanel(
-            backgroundColor: Colors.blueGrey.shade200,
-            headerBuilder: (context, isopen) {
-              return Center(child: Text('${itemsLists[1][0]}'));
-            },
-            body: ThoughtsCategoryWidget(
-              specials: itemsLists[1],
-            ),
-            isExpanded: _isOpen[1]),
-        ExpansionPanel(
-            backgroundColor: Colors.redAccent,
-            headerBuilder: (context, isopen) {
-              return Center(child: Text('${itemsLists[2][0]}'));
-            },
-            body: ThoughtsCategoryWidget(
-              specials: itemsLists[2],
-            ),
-            isExpanded: _isOpen[2]),
-      ],
-    );
-  }
-
- Widget thirdOne() {
+  Widget fourthOne() {
   return Container(
-    padding: EdgeInsets.all(10),
-    color: Colors.purple[200],
+    decoration: BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(15),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.2),
+          spreadRadius: 5,
+          blurRadius: 7,
+          offset: Offset(0, 3),
+        ),
+      ],
+    ),
+    margin: EdgeInsets.all(10),
+    padding: EdgeInsets.all(15),
+    child: StatisticsPersonScreen().CircleGrafics(),
+  );
+}
+
+
+Widget ExpasionPanelListCategory({required List<List<String>> itemsLists}) {
+  return ExpansionPanelList(
+    expandedHeaderPadding: EdgeInsets.all(5),
+    expansionCallback: (i, isopen) {
+      _toggleExpansion(i);
+    },
+    children: itemsLists.map<ExpansionPanel>((itemsList) {
+      int index = itemsLists.indexOf(itemsList);
+      return ExpansionPanel(canTapOnHeader: true,
+        backgroundColor: index == 0 ? Colors.yellow : index == 1 ? Colors.blueGrey.shade200 : Colors.redAccent,
+        headerBuilder: (context, isopen) {
+          return ListTile(
+            leading: Icon(Icons.arrow_right, color: Colors.white),
+            title: Text(
+              '${itemsList[0]}',
+              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+          );
+        },
+        body: ThoughtsCategoryWidget(
+          specials: itemsList,
+        ),
+        isExpanded: _isOpen[index],
+      );
+    }).toList(),
+  );
+}
+
+
+
+  
+Widget thirdOne() {
+  return Container(
+    decoration: BoxDecoration(
+      color: Colors.purple[200],
+      borderRadius: BorderRadius.circular(15),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.2),
+          spreadRadius: 5,
+          blurRadius: 7,
+          offset: Offset(0, 3),
+        ),
+      ],
+    ),
+    margin: EdgeInsets.all(10),
+    padding: EdgeInsets.all(15),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Descripcion'),
+        Text('Descripcion', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         SizedBox(height: 5),
         Text(
-          'oluptate aute elit Lorem sunt et ut mollit officia voluptate. Ad mollit velit amet dolore eiusmod magna. Aliquip labore sunt qui eiusmod sint aliquip amet nisi reprehenderit in in proident nulla sint. Duis sit nostrud sunt dolor dolor ea. Exercitation dolor esse excepteur ullamco aliquip proident excepteur voluptate cillum. Aliqua Lorem reprehenderit velit aliquip pariatur velit qui aliquip.'
+          'oluptate aute elit Lorem sunt et ut mollit officia voluptate. Ad mollit velit amet dolore eiusmod magna. Aliquip labore sunt qui eiusmod sint aliquip amet nisi reprehenderit in in proident nulla sint. Duis sit nostrud sunt dolor dolor ea. Exercitation dolor esse excepteur ullamco aliquip proident excepteur voluptate cillum. Aliqua Lorem reprehenderit velit aliquip pariatur velit qui aliquip.',
+          style: TextStyle(color: Colors.white),
         ),
       ],
     ),
   );
 }
 
- 
 
-  Widget secondOne() {
+ 
+Widget secondOne() {
   return Container(
-    color: Color.fromARGB(255, 255, 166, 196),
+    decoration: BoxDecoration(
+      color: Color.fromARGB(255, 255, 166, 196),
+      borderRadius: BorderRadius.circular(15),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.2),
+          spreadRadius: 5,
+          blurRadius: 7,
+          offset: Offset(0, 3),
+        ),
+      ],
+    ),
+    margin: EdgeInsets.all(10),
     child: Padding(
-      padding: EdgeInsets.all(7),
+      padding: EdgeInsets.all(15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Menstrual cycle"),
+          Text("Menstrual cycle", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
           SizedBox(height: 10),
           ViewCycleWidget(dateReferenceStartBleed: dateMenstrualCycle, now: DateTime.now()),
           SizedBox(height: 6),
@@ -238,53 +287,62 @@ Widget fifthOne(List<bool> checks) {
   );
 }
 
-
 Widget firstOne() {
   return Container(
-    color: Colors.blue,
+    decoration: BoxDecoration(
+      color: Colors.blue,
+      borderRadius: BorderRadius.circular(15),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.2),
+          spreadRadius: 5,
+          blurRadius: 7,
+          offset: Offset(0, 3),
+        ),
+      ],
+    ),
+    margin: EdgeInsets.all(10),
     child: Padding(
-      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            const CircleAvatar(
-              radius: 50,
-              backgroundImage: NetworkImage(
-                  'https://img.freepik.com/fotos-premium/retrato-al-aire-libre-mujer-hermosa-desnuda_218872-3015.jpg?w=360'),
-            ),
-            SizedBox(width: 25),
-            Column(
+      padding: EdgeInsets.all(15),
+      child: Row(
+        children: [
+          CircleAvatar(
+            radius: 50,
+            backgroundImage: NetworkImage(
+                'https://img.freepik.com/fotos-premium/retrato-al-aire-libre-mujer-hermosa-desnuda_218872-3015.jpg?w=360'),
+          ),
+          SizedBox(width: 25),
+          Expanded(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("Estados civil: Soltera"),
-                const Text("Creencias: Cristiana"),
-                const Tooltip(
+                Text("Estados civil: Soltera", style: TextStyle(color: Colors.white )),
+                Text("Creencias: Cristiana", style: TextStyle(color: Colors.white)),
+                Tooltip(
                   showDuration: Duration(minutes: 1),
                   message: '14 de julio de 1996',
-                  child: Text('Edad : 19'),
+                  child: Text('Edad : 19', style: TextStyle(color: Colors.white)),
                 ),
-                Text('Numero: 95067834'),
-                Text('Ocupacion: Contadora'),
-                Text('Metas: Poner su propia tienda'),
-                Text('Sangre: A+'),
-               Row(children: [ 
-                // MapButton(),
-                  Tooltip(
-                  message: 'Lugar donde trabaja  ',
+                Text('Numero: 95067834', style: TextStyle(color: Colors.white)),
+                Text('Ocupacion: Contadora', style: TextStyle(color: Colors.white)),
+                Text('Metas: Poner su propia tienda', style: TextStyle(color: Colors.white)),
+                Text('Sangre: A+', style: TextStyle(color: Colors.white)),
+                Tooltip(
+                  message: 'Lugar donde trabaja',
                   child: IconButton(
                     onPressed: () {},
-                    icon: Icon(size: 30, Icons.location_on_outlined),
+                    icon: Icon(Icons.location_on_outlined, color: Colors.white),
                   ),
-                ),],)
+                ),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     ),
   );
 }
+
 
 
   Widget zeroOne() {
