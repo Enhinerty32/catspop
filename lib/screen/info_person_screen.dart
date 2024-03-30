@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:catspop/screen/menstrual_cycle_screen.dart';
 import 'package:catspop/screen/screens.dart';
-import 'package:catspop/widget/analytic_widget.dart';
+import 'package:catspop/widget/analytic_widget.dart'; 
 import 'package:catspop/widget/view_cycle_widget.dart';
 import 'package:catspop/widget/widgets.dart';
 import 'package:flutter/cupertino.dart';
@@ -132,7 +132,7 @@ Widget fifthOne(List<bool> checks) {
             children: List.generate(itemTexts.length, (index) {
               return Stack(
                 alignment: Alignment.center,
-                children: [
+                children: [ 
                   Tooltip(
                     message: itemTexts[index],
                     child: Container(
@@ -268,13 +268,15 @@ Widget firstOne() {
                 Text('Ocupacion: Contadora'),
                 Text('Metas: Poner su propia tienda'),
                 Text('Sangre: A+'),
-                Tooltip(
-                  message: 'Touchme',
+               Row(children: [ 
+                // MapButton(),
+                  Tooltip(
+                  message: 'Lugar donde trabaja  ',
                   child: IconButton(
                     onPressed: () {},
                     icon: Icon(size: 30, Icons.location_on_outlined),
                   ),
-                ),
+                ),],)
               ],
             ),
           ],
