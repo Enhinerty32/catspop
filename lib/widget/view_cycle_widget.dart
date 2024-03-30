@@ -7,16 +7,18 @@ import 'package:intl/intl.dart';
 
 
 class ViewCycleWidget extends StatelessWidget {
-  ViewCycleWidget({Key? key}) : super(key: key);
-
-  // Principal
-  final now = DateTime.now();
-  // test=DateTime.parse('2024-05-22')
-  final fechaReferenciaInicioSangrado = DateTime.parse('2024-03-01');
+  ViewCycleWidget({super.key,required this.now,required this.dateReferenceStartBleed});
 
   @override
+  // Principal
+  final now ; 
+  //DateTime.now();
+  // test=DateTime.parse('2024-05-22')
+  final dateReferenceStartBleed ;
+  // DateTime.parse('2024-03-01');
+
   Widget build(BuildContext context) {
-    final date = resultDate(fechaReferenciaInicioSangrado, now);
+    final date = resultDate(dateReferenceStartBleed, now);
     print("este es el que hize $date");
 
     // Variables Centrales

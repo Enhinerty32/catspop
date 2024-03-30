@@ -16,7 +16,7 @@ class StatisticsPersonScreen extends StatelessWidget {
         SingleChildScrollView(scrollDirection: Axis.horizontal,
           child: 
               GraficMountain() , 
-        ),CircleGrafics(),
+        ), 
          LineGraf(cyanPoints: 50, otherPoints: 200) ,ButtonsAR()
       ],
     ),);
@@ -36,7 +36,7 @@ class StatisticsPersonScreen extends StatelessWidget {
   }
   
   Widget CircleGrafics() {
-    return Container( 
+    return Container( color: Colors.black,
       padding: EdgeInsets.all(6),
       height: 220,
       child:   Row(
@@ -53,27 +53,40 @@ class StatisticsPersonScreen extends StatelessWidget {
                 centerSpaceRadius: 5,
                 sectionsSpace: 2,
                 sections: [
-                  PieChartSectionData(
-                      title: 'Acuerdos',
-                      value: 19,
+                  PieChartSectionData(  showTitle: false,
+                      title: 'Tacto',
+                      value: 5,
                       radius: 100,
-                      color: Colors.green),
-                  PieChartSectionData(
-                      title: 'Traicion',
-                      value: 30,
+                      color: Colors.greenAccent),
+                  PieChartSectionData(showTitle: false,
+                      title: 'Sevicio',
+                      value: 7,
                       radius: 100,
-                      color: Colors.yellow),
-                  PieChartSectionData(
-                      title: 'Desacuerdo',
-                      value: 19,
+                      color: Colors.yellowAccent),
+                  PieChartSectionData(showTitle: false,
+                      title: 'Regalo',
+                      value: 9,
                       radius: 100,
-                      color: Colors.red)
+                      color: Colors.redAccent),
+                  PieChartSectionData(showTitle: false,
+                      title: 'Palabra',
+                      value: 6,
+                      radius: 100,
+                      color: Colors.purpleAccent),
+                  PieChartSectionData(showTitle: false,
+                      title: 'Tiempo',
+                      value: 3,
+                      radius: 100,
+                      color: Colors.blueAccent)
                 ]),
           ),
         ),SizedBox(width: 10,),
-         Column(mainAxisAlignment: MainAxisAlignment.center,crossAxisAlignment: CrossAxisAlignment.start,children: [tittlePlusIcon('Acuerdo', Colors.green),
-                 tittlePlusIcon('Traicion', Colors.yellow),
-                 tittlePlusIcon('Desacuerdo', Colors.red),],)
+         Column(mainAxisAlignment: MainAxisAlignment.center,crossAxisAlignment: CrossAxisAlignment.start,children: [ 
+                tittlePlusIcon('Tacto', Colors.greenAccent    ),
+                tittlePlusIcon('Servicio', Colors.yellowAccent),
+                tittlePlusIcon('Regalo', Colors.redAccent     ),
+                tittlePlusIcon('Palabra', Colors.purpleAccent ) ,
+                tittlePlusIcon('Tiempo', Colors.blueAccent    )],)
       ],
     )
     );
@@ -149,9 +162,9 @@ class StatisticsPersonScreen extends StatelessWidget {
     Widget tittlePlusIcon(String tittle, Color color) {
     return Row(
       children: [
-        Icon(Icons.circle, color: color),
+        Icon(Icons.circle, color: color,size: 30,),
         SizedBox(width: 10),
-        Text(tittle),
+        Text(tittle,style: TextStyle(color: Colors.white),),
       ],
     );
   }

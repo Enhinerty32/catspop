@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ThoughtsCategoryWidget extends StatelessWidget {
-  ThoughtsCategoryWidget({super.key, required this.specials});
+  ThoughtsCategoryWidget({super.key, required this.specials, this.customList});
 //task
 //confirm if thare are objects
 
   @override
   final List<String> specials;
+  final void Function()? customList; 
   Widget build(BuildContext context) {
     return SizedBox(
       height: 180,
@@ -28,15 +29,23 @@ class ThoughtsCategoryWidget extends StatelessWidget {
                       color: Colors.cyanAccent,
                       borderRadius: BorderRadius.circular(20)),
                   padding: EdgeInsets.all(7),
-                  child: Text(
-                    '${specials[index]}',
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                  child:  changeWidget(index: index,onPressed: (){}),
                 )),
           );
         },
       ),
     );
+  }
+
+  Widget changeWidget({required index,required void Function()? onPressed}) { 
+ 
+    if (specials[index]== specials[0]) 
+    return IconButton(onPressed: onPressed, icon: Icon(Icons.add));
+
+    else return Text(
+                  '${specials[index]}',
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                );
   }
 }
