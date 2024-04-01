@@ -10,7 +10,7 @@ class ThoughtsCategoryWidget extends StatelessWidget {
   final void Function()? customList; 
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 180,
+      height: 200,width: 500,
       child: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
@@ -25,8 +25,7 @@ class ThoughtsCategoryWidget extends StatelessWidget {
                 alignment: Alignment.center,
                 padding: EdgeInsets.all(5),
                 child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.cyanAccent,
+                  decoration: BoxDecoration( 
                       borderRadius: BorderRadius.circular(20)),
                   padding: EdgeInsets.all(7),
                   child:  changeWidget(index: index,onPressed: (){}),
@@ -42,10 +41,12 @@ class ThoughtsCategoryWidget extends StatelessWidget {
     if (specials[index]== specials[0]) 
     return IconButton(onPressed: onPressed, icon: Icon(Icons.add));
 
-    else return Text(
-                  '${specials[index]}',
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                );
+    else return Container(width: 400,
+      child: Text(
+                    '${specials[index]}',
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+    );
   }
 }

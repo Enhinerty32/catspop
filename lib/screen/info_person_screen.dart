@@ -14,10 +14,14 @@ import 'package:flutter/widgets.dart';
 
 class InfoPersonScreen extends StatefulWidget {
   const InfoPersonScreen({Key? key}) : super(key: key);
- 
   @override
   State<InfoPersonScreen> createState() => _InfoPersonScreenState();
 }
+ 
+  
+final TextStyle titleTextStyle = TextStyle( fontSize: 16);
+
+final TextStyle fillTextStyle = TextStyle( );
 
 class _InfoPersonScreenState extends State<InfoPersonScreen> {
   final dateMenstrualCycle = DateTime.parse('2024-03-01');
@@ -49,7 +53,7 @@ class _InfoPersonScreenState extends State<InfoPersonScreen> {
     ],
   ]; 
 
-  List<bool>checksTrush=[true,false,true,false,true,false];
+  List<bool>checksTrush=[true,false,true,false,false,false];
 
   final List<bool> _isOpen = [false, false, false]; // Initial expanded state
 
@@ -58,7 +62,7 @@ class _InfoPersonScreenState extends State<InfoPersonScreen> {
     setState(() {
       _isOpen[index] = !_isOpen[index];
     });
-  }
+  } 
 
   Widget build(BuildContext context) {
     MediaQueryData mediaquery = MediaQuery.of(context);
@@ -71,35 +75,35 @@ class _InfoPersonScreenState extends State<InfoPersonScreen> {
       
     ];
     return Scaffold(
-        body: CustomScrollView(
-      scrollDirection: Axis.vertical,
-      slivers: [
-        const SliverAppBar(
-          title: Text('Karla Elizabet'),
-        ),
-        SliverToBoxAdapter(child: firstOne()),
-        SliverList(
-            delegate: SliverChildBuilderDelegate((context, index) {
-          return pricipalsWidget[index];
-        }, childCount: pricipalsWidget.length)),
-        // Wishes,Troubles,Needs
-        sixthOne(),
-      
-      SliverToBoxAdapter(child: 
-      fourthOne(),),
-        // widget Analisis de Interacion
-        //AnalyticWidget().analyticResult(context),
-
-      ],
-    ));
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: CustomScrollView(
+                scrollDirection: Axis.vertical,
+                slivers: [
+          const SliverAppBar(
+            title: Text('Karla Elizabet'),
+          ),
+          SliverToBoxAdapter(child: firstOne()),
+          SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+            return pricipalsWidget[index];
+          }, childCount: pricipalsWidget.length)),
+          // Wishes,Troubles,Needs
+          sixthOne(),
+                
+                SliverToBoxAdapter(child: 
+                fourthOne(),),
+          // widget Analisis de Interacion
+          //AnalyticWidget().analyticResult(context),
+          
+                ],
+              ),
+        ));
   }
 
   SliverToBoxAdapter sixthOne() {
     return SliverToBoxAdapter(
-          child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ExpasionPanelListCategory(  itemsLists: myItemList),
-      ));
+          child: ExpasionPanelListCategory(  itemsLists: myItemList));
   }
 
   Widget fifthOne(List<bool> checks) {
@@ -122,24 +126,10 @@ class _InfoPersonScreenState extends State<InfoPersonScreen> {
     Colors.yellow
   ];
 
-  return Container(
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(15),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withOpacity(0.2),
-          spreadRadius: 5,
-          blurRadius: 7,
-          offset: Offset(0, 3),
-        ),
-      ],
-    ),
-    margin: EdgeInsets.all(10),
-    padding: EdgeInsets.all(15),
-    child: Column(
+  return Card(
+    child: Column(crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Nivel de confianza", style: TextStyle(fontWeight: FontWeight.bold)),
+        BackgroundTextContainer(child: Text("Nivel de confianza", style: titleTextStyle ,)),
         Padding(
           padding: EdgeInsets.all(8.0),
           child: Row(
@@ -174,81 +164,68 @@ class _InfoPersonScreenState extends State<InfoPersonScreen> {
 
 
   Widget fourthOne() {
-  return Container(
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(15),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withOpacity(0.2),
-          spreadRadius: 5,
-          blurRadius: 7,
-          offset: Offset(0, 3),
+  return Card(
+    child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+      children: [BackgroundTextContainer(child: Text("Preferecias sentimentales",style: titleTextStyle,)),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: StatisticsPersonScreen().CircleGrafics(),
         ),
       ],
     ),
-    margin: EdgeInsets.all(10),
-    padding: EdgeInsets.all(15),
-    child: StatisticsPersonScreen().CircleGrafics(),
   );
 }
 
 
 Widget ExpasionPanelListCategory({required List<List<String>> itemsLists}) {
-  return ExpansionPanelList(
-    expandedHeaderPadding: EdgeInsets.all(5),
-    expansionCallback: (i, isopen) {
-      _toggleExpansion(i);
-    },
-    children: itemsLists.map<ExpansionPanel>((itemsList) {
-      int index = itemsLists.indexOf(itemsList);
-      return ExpansionPanel(canTapOnHeader: true,
-        backgroundColor: index == 0 ? Colors.yellow : index == 1 ? Colors.blueGrey.shade200 : Colors.redAccent,
-        headerBuilder: (context, isopen) {
-          return ListTile(
-            leading: Icon(Icons.arrow_right, color: Colors.white),
-            title: Text(
-              '${itemsList[0]}',
-              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-          );
-        },
-        body: ThoughtsCategoryWidget(
-          specials: itemsList,
-        ),
-        isExpanded: _isOpen[index],
-      );
-    }).toList(),
-  );
-}
-
-
-
-  
-Widget thirdOne() {
-  return Container(
-    decoration: BoxDecoration(
-      color: Colors.purple[200],
-      borderRadius: BorderRadius.circular(15),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withOpacity(0.2),
-          spreadRadius: 5,
-          blurRadius: 7,
-          offset: Offset(0, 3),
+  return Card(
+    child: Column( crossAxisAlignment: CrossAxisAlignment.start,
+      children: [BackgroundTextContainer(child: Text("Obcervaciones",style: titleTextStyle,)),
+        ExpansionPanelList(dividerColor: Colors.transparent,expandIconColor: Colors.transparent,
+          elevation: 0,
+          
+          expansionCallback: (i, isopen) {
+            _toggleExpansion(i);
+          },
+          children: itemsLists.map<ExpansionPanel>((itemsList) {
+            int index = itemsLists.indexOf(itemsList);
+            return ExpansionPanel( backgroundColor: Colors.transparent,canTapOnHeader: true, 
+              headerBuilder: (context, isopen) {
+                return  Padding(
+                  padding:  EdgeInsets.all(8.0),
+                  child: Container(padding: EdgeInsets.all(10),decoration: BoxDecoration(color: ThemeData().focusColor,borderRadius: BorderRadius.circular(10)),
+                    child: Text( 
+                          '${itemsList[0]}',  
+                        )),
+                );
+                
+              },
+              body: ThoughtsCategoryWidget(
+                specials: itemsList,
+              ),
+              isExpanded: _isOpen[index],
+            );
+          }).toList(),
         ),
       ],
     ),
-    margin: EdgeInsets.all(10),
-    padding: EdgeInsets.all(15),
+  );
+}
+ 
+  
+Widget thirdOne() {
+  return Card(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Descripcion', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+        BackgroundTextContainer(child: Text('Descripcion', style:  titleTextStyle)),
         SizedBox(height: 5),
-        Text(
-          'oluptate aute elit Lorem sunt et ut mollit officia voluptate. Ad mollit velit amet dolore eiusmod magna. Aliquip labore sunt qui eiusmod sint aliquip amet nisi reprehenderit in in proident nulla sint. Duis sit nostrud sunt dolor dolor ea. Exercitation dolor esse excepteur ullamco aliquip proident excepteur voluptate cillum. Aliqua Lorem reprehenderit velit aliquip pariatur velit qui aliquip.',
-          style: TextStyle(color: Colors.white),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            'oluptate aute elit Lorem sunt et ut mollit officia voluptate. Ad mollit velit amet dolore eiusmod magna. Aliquip labore sunt qui eiusmod sint aliquip amet nisi reprehenderit in in proident nulla sint. Duis sit nostrud sunt dolor dolor ea. Exercitation dolor esse excepteur ullamco aliquip proident excepteur voluptate cillum. Aliqua Lorem reprehenderit velit aliquip pariatur velit qui aliquip.',
+            
+          ),
         ),
       ],
     ),
@@ -258,87 +235,76 @@ Widget thirdOne() {
 
  
 Widget secondOne() {
-  return Container(
-    decoration: BoxDecoration(
-      color: Color.fromARGB(255, 255, 166, 196),
-      borderRadius: BorderRadius.circular(15),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withOpacity(0.2),
-          spreadRadius: 5,
-          blurRadius: 7,
-          offset: Offset(0, 3),
+  return Card(
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        BackgroundTextContainer(child: Text("Menstrual cycle", style:  titleTextStyle)),
+        SizedBox(height: 10),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ViewCycleWidget(dateReferenceStartBleed: dateMenstrualCycle, now: DateTime.now()),
         ),
+        SizedBox(height: 6),
       ],
-    ),
-    margin: EdgeInsets.all(10),
-    child: Padding(
-      padding: EdgeInsets.all(15),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("Menstrual cycle", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-          SizedBox(height: 10),
-          ViewCycleWidget(dateReferenceStartBleed: dateMenstrualCycle, now: DateTime.now()),
-          SizedBox(height: 6),
-        ],
-      ),
     ),
   );
 }
 
 Widget firstOne() {
-  return Container(
-    decoration: BoxDecoration(
-      color: Colors.blue,
-      borderRadius: BorderRadius.circular(15),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withOpacity(0.2),
-          spreadRadius: 5,
-          blurRadius: 7,
-          offset: Offset(0, 3),
+  return Card(
+    child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        BackgroundTextContainer(child: Text('Profile',style: titleTextStyle,)),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              CircleAvatar(
+                radius: 50,
+                backgroundImage: NetworkImage(
+                    'https://img.freepik.com/fotos-premium/retrato-al-aire-libre-mujer-hermosa-desnuda_218872-3015.jpg?w=360'),
+              ),
+              SizedBox(width: 25),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Estados civil: Soltera", ),
+                    Text("Creencias: Cristiana",   ),
+                    Tooltip(
+                      showDuration: Duration(minutes: 1),
+                      message: '14 de julio de 1996',
+                      child: Text('Edad : 19',),
+                    ),
+                    Text('Numero: 95067834', ),
+                    Text('Ocupacion: Contadora', ),
+                    Text('Metas: Poner su propia tienda', ),
+                    Text('Sangre: A+',),
+                    Row(
+                      children: [  Tooltip(
+                      message: 'Lugar donde vive',
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.location_on_outlined, ),
+                      ),
+                    ),
+                        Tooltip(
+                          message: 'Lugar donde trabaja',
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.location_on_outlined,  ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ],
-    ),
-    margin: EdgeInsets.all(10),
-    child: Padding(
-      padding: EdgeInsets.all(15),
-      child: Row(
-        children: [
-          CircleAvatar(
-            radius: 50,
-            backgroundImage: NetworkImage(
-                'https://img.freepik.com/fotos-premium/retrato-al-aire-libre-mujer-hermosa-desnuda_218872-3015.jpg?w=360'),
-          ),
-          SizedBox(width: 25),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Estados civil: Soltera", style: TextStyle(color: Colors.white )),
-                Text("Creencias: Cristiana", style: TextStyle(color: Colors.white)),
-                Tooltip(
-                  showDuration: Duration(minutes: 1),
-                  message: '14 de julio de 1996',
-                  child: Text('Edad : 19', style: TextStyle(color: Colors.white)),
-                ),
-                Text('Numero: 95067834', style: TextStyle(color: Colors.white)),
-                Text('Ocupacion: Contadora', style: TextStyle(color: Colors.white)),
-                Text('Metas: Poner su propia tienda', style: TextStyle(color: Colors.white)),
-                Text('Sangre: A+', style: TextStyle(color: Colors.white)),
-                Tooltip(
-                  message: 'Lugar donde trabaja',
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.location_on_outlined, color: Colors.white),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
     ),
   );
 }
@@ -355,3 +321,13 @@ Widget firstOne() {
   }
 }
  
+ 
+Widget BackgroundTextContainer({required Text child , Color ?color}){
+return  Container(
+padding: EdgeInsets.all(2),
+decoration: BoxDecoration( color: color??ThemeData().primaryColor.withOpacity(0.5),borderRadius: BorderRadius.only(topLeft: Radius.circular(12.3),bottomRight: Radius.circular(12.3)) ),
+child: Padding(
+  padding: const EdgeInsets.all(8.0),
+  child: child,
+),);
+}

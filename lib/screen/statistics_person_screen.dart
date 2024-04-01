@@ -168,7 +168,7 @@ class StatisticsPersonScreen extends StatelessWidget {
         children: [
           Icon(Icons.circle, color: color,size: 30,),
           SizedBox(width: 10),
-          Text(tittle,style: TextStyle(color: colorText),),
+          Text(tittle),
           
         ],
       ),

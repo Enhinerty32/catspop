@@ -13,15 +13,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp( 
       debugShowCheckedModeBanner: false,
-      initialRoute:  'InfoPerson',
-      theme: ThemeData.light(),
+      initialRoute:  'Home',
+      theme: ThemeData.dark(),
       routes: {
         'Home': (BuildContext context) => const HomeScreen(),
         'InfoPerson': (BuildContext context) => const InfoPersonScreen(),
         
         'test': (BuildContext context) => const test(),
         'Statistics': (BuildContext context) =>   StatisticsPersonScreen()
+        ,
+        'Skills': (BuildContext context) =>   TricksScreen()
       },
     );
   }
 }
+// ThemeData(cardTheme: CardTheme(elevation: 3.5)),
