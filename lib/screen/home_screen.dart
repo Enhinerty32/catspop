@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  
+  @override
+  Widget build(BuildContext context) {  
+
     return  Scaffold(
+      
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
@@ -20,7 +29,12 @@ class HomeScreen extends StatelessWidget {
             ),  ListTile(
               title: Text('Trucos Secretos'),
               onTap: () {
-                Navigator.pushNamed(context, 'Skills');
+                Navigator.pushNamed(context, 'Tricks');
+              },
+            ),  ListTile(
+              title: Text('Mejorate a ti mismo'),
+              onTap: () {
+                Navigator.pushNamed(context, 'ImproveYourself');
               },
             ),
             ListTile(
@@ -28,11 +42,12 @@ class HomeScreen extends StatelessWidget {
               onTap: () {
                 // Navegar a la página de configuración
               },
-            ),
+            ), 
+
           ],
         ),
       ),
-      appBar: AppBar(title: Text('CatsPop')),
+      appBar: AppBar(title: Text('CatsPop')  ,),
       body: ListView(children: [
         ListTile(
           

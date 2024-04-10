@@ -17,7 +17,6 @@ class InfoPersonScreen extends StatefulWidget {
   @override
   State<InfoPersonScreen> createState() => _InfoPersonScreenState();
 }
- 
   
 final TextStyle titleTextStyle = TextStyle( fontSize: 16);
 
@@ -71,7 +70,8 @@ class _InfoPersonScreenState extends State<InfoPersonScreen> {
        
       secondOne(),
       thirdOne(), 
-      fifthOne(checksTrush)
+      fifthOne(checksTrush), 
+      SeventhOne()
       
     ];
     return Scaffold(
@@ -89,14 +89,13 @@ class _InfoPersonScreenState extends State<InfoPersonScreen> {
             return pricipalsWidget[index];
           }, childCount: pricipalsWidget.length)),
           // Wishes,Troubles,Needs
-          sixthOne(),
+          sixthOne(), 
                 
                 SliverToBoxAdapter(child: 
                 fourthOne(),),
           // widget Analisis de Interacion
           //AnalyticWidget().analyticResult(context),
-          
-                ],
+            ],
               ),
         ));
   }
@@ -138,7 +137,7 @@ class _InfoPersonScreenState extends State<InfoPersonScreen> {
               return Stack(
                 alignment: Alignment.center,
                 children: [
-                  Tooltip(
+                  Tooltip( 
                     message: itemTexts[index],
                     child: Container(
                       decoration: BoxDecoration(
@@ -309,6 +308,21 @@ Widget firstOne() {
   );
 }
 
+Widget SeventhOne() {
+  return Card(
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        BackgroundTextContainer(child: Text('MBTI Personalidad', style:  titleTextStyle)),
+        SizedBox(height: 5),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: PersonalityScanWidget(),
+        ),
+      ],
+    ),
+  );
+}
 
 
   Widget zeroOne() {

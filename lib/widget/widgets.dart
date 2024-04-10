@@ -6,3 +6,5 @@ export  'package:catspop/widget/analytic_widget.dart';
 export  'package:catspop/widget/mountainGrafic_widget.dart'; 
  
 export 'package:catspop/widget/buttonMap_widget.dart';
+
+export 'package:catspop/widget/personality_scan_widget.dart'; 

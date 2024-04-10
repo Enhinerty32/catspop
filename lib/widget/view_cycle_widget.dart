@@ -56,9 +56,7 @@ class ViewCycleWidget extends StatelessWidget {
     final endFertilePosition = startFertilePosition + (6 / differenceInDays) * totalWidth; // 6 days of fertility period
 
     return Tooltip(
-      message: voidTextComplete(),
-      exitDuration: Duration(minutes: 20),
-      showDuration: Duration(minutes: 20),
+      message: voidTextComplete(), 
       child: Container(
         child: Stack(
           children: [
