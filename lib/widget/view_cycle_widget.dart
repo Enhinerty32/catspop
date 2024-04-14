@@ -19,7 +19,7 @@ class ViewCycleWidget extends StatelessWidget {
 
   Widget build(BuildContext context) {
     final date = resultDate(dateReferenceStartBleed, now);
-    print("este es el que hize $date");
+   // print("este es el que hize $date");
 
     // Variables Centrales
     final String initDateBlood = date["initB"]!;

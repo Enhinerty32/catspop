@@ -2,7 +2,8 @@ import 'dart:math';
 
 import 'package:catspop/screen/menstrual_cycle_screen.dart';
 import 'package:catspop/screen/screens.dart';
-import 'package:catspop/widget/analytic_widget.dart'; 
+import 'package:catspop/widget/analytic_widget.dart';
+import 'package:catspop/widget/radar_widget.dart'; 
 import 'package:catspop/widget/view_cycle_widget.dart';
 import 'package:catspop/widget/widgets.dart';
 import 'package:flutter/cupertino.dart';
@@ -71,7 +72,7 @@ class _InfoPersonScreenState extends State<InfoPersonScreen> {
       secondOne(),
       thirdOne(), 
       fifthOne(checksTrush), 
-      SeventhOne()
+      SeventhOne(),
       
     ];
     return Scaffold(
@@ -323,6 +324,7 @@ Widget SeventhOne() {
     ),
   );
 }
+ 
 
 
   Widget zeroOne() {
