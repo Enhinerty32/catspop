@@ -1,5 +1,7 @@
+import 'package:catspop/provider/people_profile_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -12,6 +14,8 @@ class _HomeScreenState extends State<HomeScreen> {
   
   @override
   Widget build(BuildContext context) {  
+
+    final peopleProvider= Provider.of<PeopleProfileProvider>(context);
 
     return  Scaffold(
       
@@ -32,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Navigator.pushNamed(context, 'Tricks');
               },
             ),  ListTile(
-              title: Text('Mejorate a ti mismo'),
+            title: Text('Mejorate a ti mismo'),
               onTap: () {
                 Navigator.pushNamed(context, 'ImproveYourself');
               },

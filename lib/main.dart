@@ -1,7 +1,9 @@
+import 'package:catspop/provider/providers.dart';
 import 'package:catspop/screen/test.dart';
 import 'package:flutter/material.dart';
 import 'package:catspop/screen/screens.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,19 +33,24 @@ class MyApp extends StatelessWidget {
 
 
 
-    return MaterialApp( 
-      debugShowCheckedModeBanner: false,
-      initialRoute:  'Home',
-      theme:  darkTheme,   routes: {
-        'Home': (BuildContext context) => const HomeScreen(),
-        'InfoPerson': (BuildContext context) => const InfoPersonScreen(),
-        
-        'test': (BuildContext context) => const test(),
-        'Statistics': (BuildContext context) =>   StatisticsPersonScreen()
-        ,
-        'Tricks': (BuildContext context) =>   TricksScreen(),
-        'ImproveYourself': (BuildContext context) =>   ImproveYourselfScreen()
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => PeopleProfileProvider(),lazy: false,)
+      ],
+      child: MaterialApp( 
+        debugShowCheckedModeBanner: false,
+        initialRoute:  'Home',
+        theme:  darkTheme,   routes: {
+          'Home': (BuildContext context) => const HomeScreen(),
+          'InfoPerson': (BuildContext context) => const InfoPersonScreen(),
+          
+          'test': (BuildContext context) => const test(),
+          'Statistics': (BuildContext context) =>   StatisticsPersonScreen()
+          ,
+          'Tricks': (BuildContext context) =>   TricksScreen(),
+          'ImproveYourself': (BuildContext context) =>   ImproveYourselfScreen()
+        },
+      ),
     );
   }
 }

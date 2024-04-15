@@ -1,0 +1,1 @@
+export 'package:catspop/model/people_model.dart';
